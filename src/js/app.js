@@ -7,8 +7,10 @@ class AppComponent {
   init () {
     api
       .getTotals()
-      .then(totals => new this.MainPage(totals))
-      .then(mainPage => this.$el.html(mainPage.render()))
+      .then(totals => new this.MainPage({ totals }))
+      .then(mainPage => {
+        this.$el.html(mainPage.$el)
+      })
   }
 }
 

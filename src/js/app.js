@@ -1,8 +1,13 @@
-class AppComponent {
+class AppComponent extends window.Component {
   constructor () {
+    super({
+      inject: {
+        api: window.api,
+        MainPage: window.MainPageComponent
+      }
+    })
+
     this.$el = $('#app')
-    this.api = window.api
-    this.MainPage = window.MainPageComponent
   }
   init () {
     api

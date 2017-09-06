@@ -1,8 +1,9 @@
 body {
   padding: 10px;
-  background: #6B54C4 !important;
+  background: #6B58C1 !important;
 }
 
 .logo {
-  vertical-align: middle;
+  display: block;
+  margin: auto;
 }

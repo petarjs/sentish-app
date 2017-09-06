@@ -10,7 +10,20 @@ class MainPageComponent extends window.Component {
   }
 
   init () {
-    let repoData = this.utils.parseGitHubRepoUrl('https://github.com/hilongjw/vue-datepicker')
+    this.$el.find('.search').on('keydown', this.onSearchKeydown.bind(this))
+  }
+
+  onSearchKeydown (event) {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      event.preventDefault()
+      if (event.target.value) {
+        this.getIssues(event.target.value)
+      }
+    }
+  }
+
+  getIssues (repoUrl) {
+    const repoData = window.utils.parseGitHubRepoUrl(repoUrl)
     this
       .api
       .getIssues(repoData)

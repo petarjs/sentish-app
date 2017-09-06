@@ -2,3 +2,7 @@ body {
   padding: 10px;
   background: #6B54C4 !important;
 }
+
+.logo {
+  vertical-align: middle;
+}

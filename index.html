@@ -45,6 +45,16 @@
       </div>
     </script>
 
+    <script id="issue-template" type="text/x-handlebars-template">
+      <div class="row">
+        <div class="col col-12">
+          {{ title }} <br>
+          {{ body }} <br>
+          {{ score }}
+        </div>
+      </div>
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
@@ -53,9 +63,10 @@
     <script src="src/js/api.js"></script>
     <script src="src/js/utils.js"></script>
     <script src="src/js/component.js"></script>
-
+    
     <script src="src/js/main.js"></script>
     <script src="src/js/app.js"></script>
+    <script src="src/js/issue.js"></script>
 
     <script>
       const app = new window.AppComponent

@@ -4,7 +4,8 @@ class MainPageComponent extends window.Component {
       template: '#main-page-template',
       inject: {
         api: window.api,
-        utils: window.utils
+        utils: window.utils,
+        Issue: window.IssueComponent
       }
     }, data)
   }
@@ -23,12 +24,17 @@ class MainPageComponent extends window.Component {
   }
 
   getIssues (repoUrl) {
-    const repoData = window.utils.parseGitHubRepoUrl(repoUrl)
+    const repoData = this.utils.parseGitHubRepoUrl(repoUrl)
     this
       .api
       .getIssues(repoData)
       .then(issues => {
         console.log(issues)
+        const issuesHtml = issues.data
+          .map(issue => new this.Issue(issue))
+          .map(issue => issue.render())
+
+        this.$el.append(issuesHtml)
       })
   }
 }

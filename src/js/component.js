@@ -1,5 +1,8 @@
 class Component {
   constructor ({ template, inject }, data) {
+
+    this.isMounted = false
+
     if (data) {
       this._data = data
     }
@@ -16,8 +19,16 @@ class Component {
     this.init()
   }
 
+  get data () {
+    return this._data
+  }
+
   set data (data) {
     this._data = data
+
+    if (this.onChange && _.isFunction(this.onChange)) {
+      this.onChange()
+    }
   }
 
   inject (deps) {
@@ -29,6 +40,15 @@ class Component {
   render ({ force = false } = {}) {
     if (!this.$el || force) {
       this.$el = $('<div>').html(this.compile(this._data))
+    }
+
+    if (!this.isMounted) {
+      this.isMounted = true
+      setTimeout(() => {
+        if (this.isMounted && _.isFunction(this.mounted)) {
+          this.mounted()
+        }
+      }, 1)
     }
 
     return this.$el

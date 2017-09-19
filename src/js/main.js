@@ -6,7 +6,8 @@ class MainPageComponent extends window.Component {
         api: window.api,
         utils: window.utils,
         Issue: window.IssueComponent,
-        Stats: window.StatsComponent
+        Stats: window.StatsComponent,
+        StatsByDay: window.StatsByDayComponent
       }
     }, data)
   }
@@ -25,6 +26,8 @@ class MainPageComponent extends window.Component {
   }
 
   getIssues (repoUrl) {
+    this.$el.find('.main__issues').empty()
+
     const repoData = this.utils.parseGitHubRepoUrl(repoUrl)
     this
       .api
@@ -33,15 +36,18 @@ class MainPageComponent extends window.Component {
         console.log(issues)
 
         const stats = this.utils.calculateIssueStats(issues.data)
-
         const statsHtml = (new this.Stats(stats)).render()
-        this.$el.append(statsHtml)
+        this.$el.find('.main__stats').append(statsHtml)
+
+        const statsByDay = this.utils.calculateIssueStatsByDay(issues.data)
+        const statsByDayHtml = (new this.StatsByDay(statsByDay)).render()
+        this.$el.find('.main__stats-by-day').append(statsByDayHtml)
 
         const issuesHtml = issues.data
           .map(issue => new this.Issue(issue))
           .map(issue => issue.render())
 
-        this.$el.append(issuesHtml)
+          this.$el.find('.main__issues').append(issuesHtml)
       })
   }
 }

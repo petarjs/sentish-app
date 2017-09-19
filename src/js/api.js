@@ -1,5 +1,5 @@
-// axios.baseURL = 'https://api.sentish.xyz/v1/'
-axios.defaults.baseURL = 'http://localhost:3000/v1/'
+axios.defaults.baseURL = 'https://api.sentish.xyz/v1/'
+// axios.defaults.baseURL = 'http://localhost:3000/v1/'
 
 function responseTransformer (response) {
   return response.data

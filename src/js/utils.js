@@ -22,6 +22,16 @@ const utils = {
       mostNegative,
       mostPositive
     }
+  },
+
+  calculateIssueStatsByDay (issues) {
+    const sortedIssues = _.sortBy(issues, i => moment(i.updated_at).valueOf())
+    const grouppedByDay = _.groupBy(sortedIssues, i => moment(i.updated_at).format('YYYY-MM-DD'))
+    const statsByDay = _.map(grouppedByDay, (issues, date) => ({
+      x: date,
+      y: issues.reduce((memo, i) => memo + i.score * i.magnitude, 0)
+    }))
+    return statsByDay
   }
 }
 

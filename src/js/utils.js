@@ -12,10 +12,13 @@ const utils = {
 
   calculateIssueStats (issues) {
     const issueScores = issues.map(i => i.score * i.magnitude)
-    const averageSentiment = _.mean(issueScores)
+    const averageSentiment = _.mean(issueScores).toFixed(2)
 
     const mostPositive = _.maxBy(issues, i => i.score * i.magnitude)
     const mostNegative = _.minBy(issues, i => i.score * i.magnitude)
+
+    mostPositive.score = mostPositive.score.toFixed(2)
+    mostPositive.magnitude = mostPositive.magnitude.toFixed(2)
 
     return {
       averageSentiment,

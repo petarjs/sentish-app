@@ -80,14 +80,20 @@
     <script id="stats-template" type="text/x-handlebars-template">
       <div class="stats row">
         <div class="col col-12">
-          <h1>{{ averageSentiment }}</h1>
+          <h1>Average sentiment: {{ averageSentiment }}</h1>
           <div>
-            <p>Most positive issue: {{ mostPositive.score }} - {{ mostPositive.magnitude }} </p>
-            <p><a href="{{ mostPositive.issue_url }}" target="_blank">{{ mostPositive.title }}</a></p>
+            <p><strong>Most positive issue:</strong> <a href="{{ mostPositive.issue_url }}" target="_blank">{{ mostPositive.title }}</a></p>
+            <ul>
+              <li>Score: {{ mostPositive.score }}</li>
+              <li>Magnitude: {{ mostPositive.magnitude }}</li>
+            </ul>
           </div>
           <div>
-            <p>Most negative issue: {{ mostNegative.score }} - {{ mostNegative.magnitude }} </p>
-            <p><a href="{{ mostNegative.issue_url }}" target="_blank">{{ mostNegative.title }}</a></p>
+              <p><strong>Most negative issue:</strong> <a href="{{ mostNegative.issue_url }}" target="_blank">{{ mostNegative.title }}</a></p>
+              <ul>
+                <li>Score: {{ mostNegative.score }}</li>
+                <li>Magnitude: {{ mostNegative.magnitude }}</li>
+              </ul>
           </div>
         </div>
       </div>

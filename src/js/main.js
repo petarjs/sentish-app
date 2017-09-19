@@ -5,7 +5,8 @@ class MainPageComponent extends window.Component {
       inject: {
         api: window.api,
         utils: window.utils,
-        Issue: window.IssueComponent
+        Issue: window.IssueComponent,
+        Stats: window.StatsComponent
       }
     }, data)
   }
@@ -30,6 +31,12 @@ class MainPageComponent extends window.Component {
       .getIssues(repoData)
       .then(issues => {
         console.log(issues)
+
+        const stats = this.utils.calculateIssueStats(issues.data)
+
+        const statsHtml = (new this.Stats(stats)).render()
+        this.$el.append(statsHtml)
+
         const issuesHtml = issues.data
           .map(issue => new this.Issue(issue))
           .map(issue => issue.render())

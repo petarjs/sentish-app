@@ -7,3 +7,7 @@ body {
   display: block;
   margin: auto;
 }
+
+.issue {
+  margin-bottom: 15px;
+}

@@ -1,4 +1,4 @@
-/* Some style resets */
+/* Style resets */
 * {
   box-sizing: border-box;
 }
@@ -12,11 +12,15 @@ html, body {
 body {
   line-height: 1.45;
   letter-spacing: .2px;
-  color: #676767;
+  color: #888888;
 }
 a {
   text-decoration: none;
   color: inherit;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #3c3c3c;
 }
 /*--------------------*/
 
@@ -31,12 +35,12 @@ a {
   box-shadow: 0px 25px 15px -10px #dedede;
 }
 .app-container {
-  max-width: 960px;
-  width: 35%;
+  width: 60%;
+  max-width: 700px;
   margin: 0 auto;
 }
 .search-form {
-
+  margin-bottom: 3rem;
 }
 .search-form__url {
   width: 100%;
@@ -47,16 +51,79 @@ a {
 }
 .search-form__url::placeholder {
   opacity: .5;
+  transform: scale(1);
   transition: all .2s;
 }
 .search-form__url:focus {
   outline: 0;
 }
 .search-form__url:focus::placeholder {
-  transform: translateY(-50%);
-  font-size: .75rem;
-  opacity: .3;
+  transform: scale(.75) translate3d(-16.5%, -50%, 0);
+  opacity: .4;
 }
 .issues-container {
-  
+
+}
+.issue {
+  margin-bottom: 4rem;
+}
+.issue__title {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  letter-spacing: .5px;
+}
+.issue__text {
+  margin: 0;
+  margin-bottom: .5rem;
+  padding: 1rem;
+  line-height: 1.6;
+  background-color: rgba(249, 249, 249, 0.51);
+  letter-spacing: .3px;
+}
+.issue__score {
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding-top: .5rem;
+  border-top: 2px solid #e6e6e6;
+  display: inline-block;
+}
+.chart-container {
+  margin: 4rem 0;
+}
+.overall-score {
+  padding: .75rem 1rem;
+  margin-bottom: .5rem;
+}
+.overall-score--positive {
+  background-color: #d7fbd7;
+}
+.overall-score--negative {
+  background-color: #ffebdb;
+}
+.overall-score__type {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.overall-score__title {
+  text-decoration: underline;
+}
+.score-info {
+  margin-bottom: 0;
+}
+.score-info__detail {
+  display: block;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  .app-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
 }

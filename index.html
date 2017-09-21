@@ -15,9 +15,9 @@
     <title>Sentish</title>
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kube/6.5.2/css/kube.min.css" /> -->
     <link rel="stylesheet" href="src/css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300" rel="stylesheet">
 
   </head>
   <body>
@@ -29,67 +29,56 @@
 
     <script id="main-page-template" type="text/x-handlebars-template">
       <form class="search-form">
-        <input type="text" class="search search-form__url" placeholder="Enter github repo url">
+        <input type="text" class="search search-form__url" placeholder="Enter github repo url" spellcheck="false">
       </form>
-      <p class="repo-count">Currently there are {{ total }} analyzed repositories.</p>
 
       <div class="main__stats"></div>
       <div class="main__stats-by-day"></div>
       <div class="main__issues-container">
-        <h2 class="issues-title">ISSUES</h2>
         <div class="main__issues"></div>
       </div>
 
-      <div class="row" id="footer">
-        <div class="col col-12">
-          Copyright &copy;2017 <a href="https://quantox.com/">Quantox</a>
-          <a href="https://developers.google.com/events/gdd-europe/">GDD Europe Team</a>,
-          character vector created by <a href="http://www.freepik.com/free-photos-vectors/character">Freepik</a>,
-          powered by <a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language API</a>
-        </div>
-      </div>
+      <footer id="footer">
+        Copyright &copy;2017 <a href="https://quantox.com/">Quantox</a>
+        <a href="https://developers.google.com/events/gdd-europe/">GDD Europe Team</a>,
+        character vector created by <a href="http://www.freepik.com/free-photos-vectors/character">Freepik</a>,
+        powered by <a href="https://cloud.google.com/natural-language/">Google Cloud Natural Language API</a>
+      </footer>
     </script>
 
     <script id="issue-template" type="text/x-handlebars-template">
-      <div class="issue row">
-        <div class="col col-12">
-          {{ title }} <br>
-          {{ body }} <br>
-          {{ score }}
-        </div>
+      <div class="issue">
+        <h2 class="issue__title">{{ title }}</h2>
+        <blockquote class="issue__text">{{ body }}</blockquote>
+        <span class="issue__score">Score {{ score }}</span>
       </div>
     </script>
     </script>
 
     <script id="stats-by-day-template" type="text/x-handlebars-template">
-      <div class="issue row">
-        <div class="col col-12">
-          <h1>Chart</h1>
-          <div>
-            <canvas id="statsByDayChart" width="400" height="400"></canvas>
-          </div>
-        </div>
+      <div class="chart-container">
+        <canvas id="statsByDayChart" width="400" height="400"></canvas>
       </div>
     </script>
 
     <script id="stats-template" type="text/x-handlebars-template">
-      <div class="stats row">
-        <div class="col col-12">
-          <h1>Average sentiment: {{ averageSentiment }}</h1>
-          <div>
-            <p><strong>Most positive issue:</strong> <a href="{{ mostPositive.issue_url }}" target="_blank">{{ mostPositive.title }}</a></p>
-            <ul>
-              <li>Score: {{ mostPositive.score }}</li>
-              <li>Magnitude: {{ mostPositive.magnitude }}</li>
-            </ul>
-          </div>
-          <div>
-              <p><strong>Most negative issue:</strong> <a href="{{ mostNegative.issue_url }}" target="_blank">{{ mostNegative.title }}</a></p>
-              <ul>
-                <li>Score: {{ mostNegative.score }}</li>
-                <li>Magnitude: {{ mostNegative.magnitude }}</li>
-              </ul>
-          </div>
+      <div class="overall-stats">
+        <h2 class="average-sentiment">Average sentiment: {{ averageSentiment }}</h2>
+        <div class="overall-score overall-score--positive">
+          <h4 class="overall-score__type">Most positive</h4>
+          <a href="{{ mostPositive.issue_url }}" target="_blank" class="overall-score__title">{{ mostPositive.title }}</a>
+          <p class="score-info">
+            <span class="score-info__detail">Score: {{ mostPositive.score }}</span>
+            <span class="score-info__detail">Magnitude: {{ mostPositive.magnitude }}</span>
+          </p>
+        </div>
+        <div class="overall-score overall-score--negative">
+          <h4 class="overall-score__type">Most negative</h4>
+          <a href="{{ mostNegative.issue_url }}" target="_blank" class="overall-score__title">{{ mostNegative.title }}</a>
+          <p class="score-info">
+            <span class="score-info__detail">Score: {{ mostNegative.score }}</span>
+            <span class="score-info__detail">Magnitude: {{ mostNegative.magnitude }}</span>
+          </p>
         </div>
       </div>
     </script>

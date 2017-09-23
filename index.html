@@ -40,6 +40,10 @@
         <div class="main__issues"></div>
       </div>
 
+      <div class="loader-container">
+        <div class="loader"></div>
+      </div>
+
       <footer id="footer">
         Copyright &copy;2017 <a href="https://quantox.com/">Quantox</a>
         <a href="https://developers.google.com/events/gdd-europe/">GDD Europe Team</a>,
@@ -55,6 +59,12 @@
         <span class="issue__score">Score {{ score }}</span>
       </div>
     </script>
+    </script>
+
+    <script id="error-template" type="text/x-handlebars-template">
+      <div class="error-container">
+        {{ message }}
+      </div>
     </script>
 
     <script id="stats-by-day-template" type="text/x-handlebars-template">
@@ -110,6 +120,7 @@
     <script src="src/js/stats.js"></script>
     <script src="src/js/stats-by-day.js"></script>
     <script src="src/js/stats-by-group.js"></script>
+    <script src="src/js/error.js"></script>
 
     <script>
       const app = new window.AppComponent

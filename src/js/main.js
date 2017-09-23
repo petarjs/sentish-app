@@ -6,6 +6,7 @@ class MainPageComponent extends window.Component {
         api: window.api,
         utils: window.utils,
         Issue: window.IssueComponent,
+        Error: window.ErrorComponent,
         Stats: window.StatsComponent,
         StatsByDay: window.StatsByDayComponent,
         StatsByGroup: window.StatsByGroupComponent
@@ -32,12 +33,14 @@ class MainPageComponent extends window.Component {
     this.$el.find('.main__stats').empty()
     this.$el.find('.main__stats-by-day').empty()
 
+    this.utils.showLoader()
+
     const repoData = this.utils.parseGitHubRepoUrl(repoUrl)
     this
       .api
       .getIssues(repoData)
       .then(issues => {
-        console.log(issues)
+        this.utils.hideLoader()
 
         const issueGroups = this.utils.groupIssuesByStandardDeviation(issues.data)
         const statsByGroupHtml = (new this.StatsByGroup(issueGroups)).render()
@@ -56,6 +59,15 @@ class MainPageComponent extends window.Component {
           .map(issue => issue.render())
 
         this.$el.find('.main__issues').append(issuesHtml)
+      })
+      .catch(error => {
+        this.utils.hideLoader()
+
+        const errorHtml = (new this.Error({
+          message: 'Oops... something went wrong. Try another repo!'
+        })).render()
+
+        this.$el.find('.main__issues').append(errorHtml)
       })
   }
 }

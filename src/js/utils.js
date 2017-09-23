@@ -93,6 +93,14 @@ const utils = {
     })
 
     return groupsWithLengths
+  },
+
+  showLoader () {
+    $('.loader-container').show()
+  },
+
+  hideLoader () {
+    $('.loader-container').hide()
   }
 }
 

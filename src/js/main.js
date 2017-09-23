@@ -7,7 +7,8 @@ class MainPageComponent extends window.Component {
         utils: window.utils,
         Issue: window.IssueComponent,
         Stats: window.StatsComponent,
-        StatsByDay: window.StatsByDayComponent
+        StatsByDay: window.StatsByDayComponent,
+        StatsByGroup: window.StatsByGroupComponent
       }
     }, data)
   }
@@ -35,6 +36,10 @@ class MainPageComponent extends window.Component {
       .then(issues => {
         console.log(issues)
 
+        const issueGroups = this.utils.groupIssuesByStandardDeviation(issues.data)
+        const statsByGroupHtml = (new this.StatsByGroup(issueGroups)).render()
+        this.$el.find('.main__stats-by-group').append(statsByGroupHtml)
+
         const stats = this.utils.calculateIssueStats(issues.data)
         const statsHtml = (new this.Stats(stats)).render()
         this.$el.find('.main__stats').append(statsHtml)
@@ -47,7 +52,7 @@ class MainPageComponent extends window.Component {
           .map(issue => new this.Issue(issue))
           .map(issue => issue.render())
 
-          this.$el.find('.main__issues').append(issuesHtml)
+        this.$el.find('.main__issues').append(issuesHtml)
       })
   }
 }

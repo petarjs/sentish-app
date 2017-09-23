@@ -32,6 +32,7 @@
         <input type="text" class="search search-form__url" placeholder="Enter github repo url" spellcheck="false">
       </form>
 
+      <div class="main__stats-by-group"></div>
       <div class="main__stats"></div>
       <div class="main__stats-by-day"></div>
       <div class="main__issues-container">
@@ -61,6 +62,12 @@
       </div>
     </script>
 
+    <script id="stats-by-group-template" type="text/x-handlebars-template">
+      <div class="chart-container">
+        <canvas id="statsByGroupChart" width="400" height="400"></canvas>
+      </div>
+    </script>
+
     <script id="stats-template" type="text/x-handlebars-template">
       <div class="overall-stats">
         <h2 class="average-sentiment">Average sentiment: {{ averageSentiment }}</h2>
@@ -70,6 +77,7 @@
           <p class="score-info">
             <span class="score-info__detail">Score: {{ mostPositive.score }}</span>
             <span class="score-info__detail">Magnitude: {{ mostPositive.magnitude }}</span>
+            <span class="score-info__detail">Total: {{ mostPositive.total }}</span>
           </p>
         </div>
         <div class="overall-score overall-score--negative">
@@ -78,6 +86,7 @@
           <p class="score-info">
             <span class="score-info__detail">Score: {{ mostNegative.score }}</span>
             <span class="score-info__detail">Magnitude: {{ mostNegative.magnitude }}</span>
+            <span class="score-info__detail">Total: {{ mostNegative.total }}</span>
           </p>
         </div>
       </div>
@@ -99,6 +108,7 @@
     <script src="src/js/issue.js"></script>
     <script src="src/js/stats.js"></script>
     <script src="src/js/stats-by-day.js"></script>
+    <script src="src/js/stats-by-group.js"></script>
 
     <script>
       const app = new window.AppComponent

@@ -33,6 +33,7 @@ class StatsByGroupComponent extends window.Component {
             colors.orange,
             colors.red,
             colors.green,
+            colors.grey
         ],
         }],
         labels: _.keys(this.data)
@@ -40,8 +41,13 @@ class StatsByGroupComponent extends window.Component {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        legend: {
+          display: false
+        }
       }
     })
+
+    $('.chart-legend').html(this.chart.generateLegend())
   }
 
   onChange () {

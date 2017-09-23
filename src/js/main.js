@@ -28,6 +28,9 @@ class MainPageComponent extends window.Component {
 
   getIssues (repoUrl) {
     this.$el.find('.main__issues').empty()
+    this.$el.find('.main__stats-by-group').empty()
+    this.$el.find('.main__stats').empty()
+    this.$el.find('.main__stats-by-day').empty()
 
     const repoData = this.utils.parseGitHubRepoUrl(repoUrl)
     this

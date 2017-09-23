@@ -21,6 +21,7 @@ class StatsByGroupComponent extends window.Component {
       "grey": "rgb(201, 203, 207)"
     }
     const ctx = $('#statsByGroupChart')[0].getContext('2d')
+
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
@@ -35,6 +36,10 @@ class StatsByGroupComponent extends window.Component {
         ],
         }],
         labels: _.keys(this.data)
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
       }
     })
   }
